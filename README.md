@@ -2,7 +2,7 @@
 
 # GLM 5.3 Abliterated API
 
-Use GLM 5.3 Abliterated via an OpenAI-compatible chat request. The example turns a rough bug report into a JSON ticket with a title, steps, expected behavior, and actual behavior.
+Call GLM 5.3 Abliterated on the HEX API with an OpenAI-compatible client. The Python example turns a rough bug report into a JSON ticket with a title, steps, expected behavior, and actual behavior. The integration guide shows the equivalent curl request.
 
 | Setting | Value |
 | --- | --- |
@@ -32,5 +32,9 @@ The script prints a JSON ticket to stdout. Use fictional data for your first run
 | [Python example](chat.py) | Submit a report and validate the returned JSON shape |
 | [Integration guide](INTEGRATION.md) | Raw curl request, output handling, and troubleshooting |
 | [HEX Model Catalog](https://github.com/hexapi-io/hex-model-catalog) | Related GLM models and exact API IDs |
+
+## Use GLM 5.3 Abliterated in OpenCode
+
+Follow the [HEX setup guide for OpenCode Desktop](https://github.com/hexapi-io/hex-opencode-setup), then select GLM 5.3 Abliterated in the model picker. In your own API client, use the exact ID `glm-5.3-abliterated`. The [GLM section of the catalog](https://github.com/hexapi-io/hex-model-catalog#glm) lists the separate IDs for Flash and Uncensored variants.
 
 [Pricing](https://hexapi.io/pricing) · [API reference](https://hexapi.io/docs) · [Service status](https://hexapi.io/status) · [OpenCode Desktop](https://hexapi.io/setup/opencode)
