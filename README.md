@@ -1,31 +1,36 @@
-![GLM 5.3 Abliterated on HEX API](cover.png)
+[![GLM 5.3 Abliterated on HEX API](cover.png)](https://hexapi.io/models)
 
 # GLM 5.3 Abliterated API
 
-Call the hosted abliterated GLM model from your own code using HEX. Start with a small prompt and verify that the output fits the task before building it into a workflow.
+Use GLM 5.3 Abliterated via an OpenAI-compatible chat request. The example turns a rough bug report into a JSON ticket with a title, steps, expected behavior, and actual behavior.
 
 | Setting | Value |
 | --- | --- |
 | Model ID | `glm-5.3-abliterated` |
-| Base URL | `https://api.hexapi.io/v1` |
-| Authentication | Bearer token from your HEX account |
+| Endpoint | `POST https://api.hexapi.io/v1/chat/completions` |
+| Authentication | HEX API key in `HEX_API_KEY` |
+| Example runtime | Python 3.10+ with the standard library |
 
-## Example · Turn a rough bug report into a ticket
+## Run the example
+
+Set `HEX_API_KEY` in your terminal using a key from your HEX account. Then run:
 
 ~~~bash
-curl --fail-with-body https://api.hexapi.io/v1/chat/completions \
-  -H "Authorization: Bearer $HEX_API_KEY" \
-  -H "Content-Type: application/json" \
-  --data '{
-    "model": "glm-5.3-abliterated",
-    "messages": [{
-      "role": "user",
-      "content": "Turn this fictional bug report into a title, reproduction steps, expected behavior, and actual behavior. Mark missing details as unknown. Report: In landscape view on a small screen, the save button disappears after opening the settings drawer."
-    }],
-    "max_tokens": 512
-  }'
+python chat.py
 ~~~
 
-Look for the four requested sections. The ticket should preserve the reported behavior and leave the device and browser unspecified. Check `finish_reason` if the response stops before all sections arrive, especially when you set a small output cap.
+You can pass a bug-report text file instead:
 
-[Browse models](https://hexapi.io/models) · [See current token rates](https://hexapi.io/pricing) · [Read the API docs](https://hexapi.io/docs)
+~~~bash
+python chat.py issue.txt
+~~~
+
+The script prints a JSON ticket to stdout. Use fictional data for your first run. Each invocation makes one billable request.
+
+| Resource | What it covers |
+| --- | --- |
+| [Python example](chat.py) | Submit a report and validate the returned JSON shape |
+| [Integration guide](INTEGRATION.md) | Raw curl request, output handling, and troubleshooting |
+| [HEX Model Catalog](https://github.com/hexapi-io/hex-model-catalog) | Related GLM models and exact API IDs |
+
+[Pricing](https://hexapi.io/pricing) · [API reference](https://hexapi.io/docs) · [Service status](https://hexapi.io/status) · [OpenCode Desktop](https://hexapi.io/setup/opencode)
